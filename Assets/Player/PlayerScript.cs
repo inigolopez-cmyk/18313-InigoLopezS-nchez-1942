@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody2D rb2D;
     public GameObject bullet;
 
+    [SerializeField] private AudioSource shootAudio;
+
     public int lifes;
     bool isDamage = false;
 
@@ -38,35 +40,17 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //private float newX;
-
         //Movimiento
         Vector2 movement = inputmovement.ReadValue<Vector2>();
         rb2D.linearVelocity = movement * 5;
         rb2D.linearVelocity = Vector2.ClampMagnitude(rb2D.linearVelocity, 10);
 
-
-        //Limites
-        //Vector3 leftEdge = cam.ViewportToWorldPoint(new Vector3(0, 0, 0));
-        //Vector3 rightEdge = cam.ViewportToWorldPoint(new Vector3(1, 0, 0));
-
-        //newX = Mathf.Clamp(newX, leftEdge.x + playerHalfWidth, rightEdge.x - playerHalfWidth);
-
-        //rb2D.MovePosition(new Vector2(newX, transform.position.y));
     }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //if (cam == null)
-        //{
-        //    cam = Camera.main;
-        //}
-
-        //playerHalfWidth = transform.localScale.x / 2f;
-
-
         lifes = 3;
 
         uiScript = GameObject.Find("Canvas").GetComponent<UpdateUI>();
@@ -104,6 +88,7 @@ public class PlayerScript : MonoBehaviour
 
         if (shoot.triggered)
         {
+            shootAudio.Play();
             GameObject temp = GetBullet();
             temp.SetActive(true);
             temp.transform.position = transform.position;
@@ -137,5 +122,13 @@ public class PlayerScript : MonoBehaviour
             uiScript.AddLifes(lifes);
             isDamage = true;
         }
+    }
+
+    public void AddHealth(int value)
+    {
+        lifes += value;
+        lifes = Mathf.Min(lifes, 6); // no deja que vidas pase de 6
+        uiScript.AddLifes(lifes);
+
     }
 }

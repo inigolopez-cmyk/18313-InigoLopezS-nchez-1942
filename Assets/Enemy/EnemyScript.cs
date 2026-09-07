@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    [SerializeField] private GameObject pickupPrefab;
+    [Range(0f, 1f)][SerializeField] private float dropChance = 0.1f;
+
     GameObject player;
     UpdateUI uiScript;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         player = GameObject.Find("Player");
         uiScript = GameObject.Find("Canvas").GetComponent<UpdateUI>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 1f * Time.deltaTime);
@@ -25,8 +27,14 @@ public class EnemyScript : MonoBehaviour
         if (collision.tag == "Bullet")
         {
             uiScript.AddScore(2);
-            gameObject.SetActive(false);
             collision.gameObject.SetActive(false);
+
+            if (Random.value <= dropChance)
+            {
+                Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+            }
+
+            gameObject.SetActive(false);
         }
     }
 }

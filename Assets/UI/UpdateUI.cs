@@ -6,25 +6,20 @@ public class UpdateUI : MonoBehaviour
 {
     public TMP_Text scoreText;
     public TMP_Text lifesText;
+    public TMP_Text highScoreText; 
     public int score;
     public GameObject gameOverPanel;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private AudioSource gameOverAudio;
+
+
     void Start()
     {
         Time.timeScale = 1;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
-    public void AddLifes(int value)
-    {
-        lifesText.text = "Lifes: " + value;
+        // Muestra el highscore guardado apenas empieza la partida
+        int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
+        highScoreText.text = "High Score: " + savedHighScore;
     }
 
     public void AddScore(int value)
@@ -33,8 +28,25 @@ public class UpdateUI : MonoBehaviour
         scoreText.text = "Points: " + score.ToString();
     }
 
+    public void SaveHighScore()
+    {
+        int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
+
+        if (score > savedHighScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
+    }
+
+    public void AddLifes(int value)
+    {
+        lifesText.text = "Lifes: " + value;
+    }
+
+
     public void OpenGameOver()
     {
+        gameOverAudio.Play();
         gameOverPanel.SetActive(true);
     }
     public void RestartGame()
