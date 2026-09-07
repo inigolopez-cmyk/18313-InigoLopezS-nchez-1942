@@ -6,7 +6,7 @@ public class UpdateUI : MonoBehaviour
 {
     public TMP_Text scoreText;
     public TMP_Text lifesText;
-    public TMP_Text highScoreText; 
+    //public TMP_Text highScoreText; 
     public int score;
     public GameObject gameOverPanel;
 
@@ -18,8 +18,8 @@ public class UpdateUI : MonoBehaviour
         Time.timeScale = 1;
 
         // Muestra el highscore guardado apenas empieza la partida
-        int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
-        highScoreText.text = "High Score: " + savedHighScore;
+        //int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
+        //highScoreText.text = "High Score: " + savedHighScore;
     }
 
     public void AddScore(int value)
@@ -28,15 +28,15 @@ public class UpdateUI : MonoBehaviour
         scoreText.text = "Points: " + score.ToString();
     }
 
-    public void SaveHighScore()
-    {
-        int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
+    //public void SaveHighScore()
+    //{
+    //    int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
 
-        if (score > savedHighScore)
-        {
-            PlayerPrefs.SetInt("HighScore", score);
-        }
-    }
+    //    if (score > savedHighScore)
+    //    {
+    //        PlayerPrefs.SetInt("HighScore", score);
+    //    }
+    //}
 
     public void AddLifes(int value)
     {
