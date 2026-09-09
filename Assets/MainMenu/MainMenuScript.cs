@@ -15,7 +15,7 @@ public class MainMenuScript : MonoBehaviour
         //highScoreText.text = "High Score: " + savedHighScore;
 
         // Cargar el volumen guardado (si existe) y aplicarlo al slider
-        float savedVolume = PlayerPrefs.GetFloat("Volume", 1f); // 1f = volumen al 100% por defecto
+        float savedVolume = PlayerPrefs.GetFloat("Volume", 0.001f); // 1f = volumen al 100% por defecto
         volumeSlider.value = savedVolume;
         AudioListener.volume = savedVolume;
     }
