@@ -122,6 +122,12 @@ public class PlayerScript : MonoBehaviour
             uiScript.AddLifes(lifes);
             isDamage = true;
         }
+        else if (collision.CompareTag("EnemyBullet"))
+        {
+            lifes--;
+            uiScript.AddLifes(lifes);
+            isDamage = false;
+        }
     }
 
     public void AddHealth(int value)
