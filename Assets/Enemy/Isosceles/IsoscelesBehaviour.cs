@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class IsoscelesBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject pickupPrefab;
-    [Range(0f, 1f)][SerializeField] private float dropChance = 0.1f;
+    [SerializeField] 
+    private GameObject pickupPrefab;
+
+    [Range(0f, 1f)][SerializeField] 
+    private float dropChance = 0.1f;
+
     public int scoreValue = 20;
 
     GameObject player;

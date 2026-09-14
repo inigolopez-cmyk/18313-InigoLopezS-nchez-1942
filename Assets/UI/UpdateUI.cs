@@ -10,7 +10,8 @@ public class UpdateUI : MonoBehaviour
     public int score;
     public GameObject gameOverPanel;
 
-    [SerializeField] private AudioSource gameOverAudio;
+    [SerializeField] 
+    private AudioSource gameOverAudio;
 
 
     void Start()
@@ -46,6 +47,7 @@ public class UpdateUI : MonoBehaviour
 
     public void OpenGameOver()
     {
+        gameOverAudio.ignoreListenerPause = true;
         gameOverAudio.Play();
         gameOverPanel.SetActive(true);
     }
@@ -58,6 +60,4 @@ public class UpdateUI : MonoBehaviour
     {
         Application.Quit();
     }
-
-
 }

@@ -11,7 +11,8 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody2D rb2D;
     public GameObject bullet;
 
-    [SerializeField] private AudioSource shootAudio;
+    [SerializeField] 
+    private AudioSource shootAudio;
 
     public int lifes;
     bool isDamage = false;
@@ -70,8 +71,8 @@ public class PlayerScript : MonoBehaviour
         if (lifes <= 0)
         {
             gameObject.SetActive(false);
-            Time.timeScale = 0;
-            uiScript.OpenGameOver();
+            uiScript.OpenGameOver();      
+            GameManager.Instance.PlayerDied(); 
         }
 
         if (isDamage)

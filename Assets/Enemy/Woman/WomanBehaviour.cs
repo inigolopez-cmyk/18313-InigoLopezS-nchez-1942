@@ -8,7 +8,8 @@ public class WomanBehaviour : MonoBehaviour
     GameObject player;
     UpdateUI uiScript;
 
-    [SerializeField] private AudioSource screamAudio;
+    [SerializeField] 
+    private AudioSource screamAudio;
 
     public float rushSpeed = 4f;
     public float centerArrivalThreshold = 0.3f;
@@ -20,8 +21,10 @@ public class WomanBehaviour : MonoBehaviour
 
     public float chargeSpeed = 12f;
 
-    [SerializeField] private GameObject pickupPrefab;
-    [Range(0f, 1f)][SerializeField] private float dropChance = 0.1f;
+    [SerializeField] 
+    private GameObject pickupPrefab;
+    [Range(0f, 1f)][SerializeField] 
+    private float dropChance = 0.1f;
     public int scoreValue = 50;
 
     void Start()

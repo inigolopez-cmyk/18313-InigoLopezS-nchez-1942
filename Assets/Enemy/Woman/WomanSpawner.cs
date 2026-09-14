@@ -46,4 +46,7 @@ public class WomanSpawner : MonoBehaviour
         WomanList.Add(newWoman);
         return newWoman;
     }
+
+
+
 }
