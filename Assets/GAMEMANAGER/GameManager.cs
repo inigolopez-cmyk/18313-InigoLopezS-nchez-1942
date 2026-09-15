@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour
 
     public bool isPlaying;
 
-    [SerializeField]
-    private float gameTime;
+    public float gameTime;
 
 
     [SerializeField]
     private TMP_Text gameTimeText;
+
+    [SerializeField] 
+    private UpdateUI uiScript;
 
 
     private void Awake()
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
             if (gameTime <= 0)
             {
                 isPlaying = false;
+                PlayerWon();
 
             }
 
@@ -79,6 +82,15 @@ public class GameManager : MonoBehaviour
         isPlaying = false;
         Time.timeScale = 0;
         AudioListener.pause = true;
+    }
+
+    public void PlayerWon()
+    {
+        gameTime = 0;
+        isPlaying = false;
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+        uiScript.OpenVictory();
     }
 
     public void ReloadLevel()

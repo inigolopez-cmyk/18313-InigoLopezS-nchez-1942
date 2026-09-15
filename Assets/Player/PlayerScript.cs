@@ -20,7 +20,6 @@ public class PlayerScript : MonoBehaviour
     public float currentTime;
     public float maxTime;
 
-
     UpdateUI uiScript;
 
     public List<GameObject> bulletPool = new List<GameObject>();
@@ -116,12 +115,6 @@ public class PlayerScript : MonoBehaviour
             lifes--;
             uiScript.AddLifes(lifes);
             isDamage = true;
-        }
-        else if (collision.CompareTag("EnemyBullet"))
-        {
-            lifes--;
-            uiScript.AddLifes(lifes);
-            isDamage = false;
         }
     }
 

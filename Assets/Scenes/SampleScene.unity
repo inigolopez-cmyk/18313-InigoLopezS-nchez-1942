@@ -1479,7 +1479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pauseMenuText: {fileID: 444234271}
-  pauseMenuPanel: {fileID: 0}
+  pauseMenuPanel: {fileID: 1899867780}
   pause:
     m_Name: Pause
     m_Type: 0
@@ -3415,6 +3415,7 @@ MonoBehaviour:
   isPlaying: 1
   gameTime: 0
   gameTimeText: {fileID: 13697874}
+  uiScript: {fileID: 436890448}
 --- !u!1 &1186100298
 GameObject:
   m_ObjectHideFlags: 0

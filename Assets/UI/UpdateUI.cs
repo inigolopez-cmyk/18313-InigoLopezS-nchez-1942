@@ -51,17 +51,17 @@ public class UpdateUI : MonoBehaviour
 
     public void OpenGameOver()
     {
-        victoryAudio.ignoreListenerPause = true;
-        victoryAudio.Play();
-        victoryPanel.SetActive(true);
+        gameOverAudio.ignoreListenerPause = true;
+        gameOverAudio.Play();
+        gameOverPanel.SetActive(true);
         SaveHighScore(); 
     }
 
     public void OpenVictory()
     {
-        gameOverAudio.ignoreListenerPause = true;
-        gameOverAudio.Play();
-        gameOverPanel.SetActive(true);
+        victoryAudio.ignoreListenerPause = true;
+        victoryAudio.Play();
+        victoryPanel.SetActive(true);
         SaveHighScore();
     }
 
