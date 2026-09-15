@@ -11,7 +11,6 @@ public class EnemySpawnerScript : MonoBehaviour
     float currentTime;
     public float maxTime;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         for (int i = 0; i < 10; i++)
@@ -22,7 +21,6 @@ public class EnemySpawnerScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentTime += Time.deltaTime;

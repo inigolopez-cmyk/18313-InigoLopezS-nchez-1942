@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraBounds : MonoBehaviour
 {
-    public BoxCollider2D boundsCollider; // Arrastra aquí el objeto BordesMapa
+    public BoxCollider2D boundsCollider; 
 
     private Camera cam;
 

@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
 public class IsoscelesSpawner : MonoBehaviour
 {
     public GameObject Isosceles;
@@ -11,7 +10,10 @@ public class IsoscelesSpawner : MonoBehaviour
     float currentTime;
     public float maxTime;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float spawnMarginY = 1f;       
+    public int maxEnemiesThisWave = 5;     
+    int enemiesSpawnedCount = 0;
+
     void Start()
     {
         for (int i = 0; i < 10; i++)
@@ -22,16 +24,25 @@ public class IsoscelesSpawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentTime += Time.deltaTime;
         if (currentTime >= maxTime)
         {
             GameObject e = getIsosceles();
-            e.transform.position = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
+
+            float randomX = Random.Range(-7f, 7f);
+            float spawnY = 5f + spawnMarginY;
+            e.transform.position = new Vector3(randomX, spawnY, 0);
+
             e.SetActive(true);
             currentTime = 0;
+
+            enemiesSpawnedCount++;
+            if (enemiesSpawnedCount >= maxEnemiesThisWave)
+            {
+                enabled = false;
+            }
         }
     }
 

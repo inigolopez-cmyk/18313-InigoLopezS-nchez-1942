@@ -20,8 +20,6 @@ public class PlayerScript : MonoBehaviour
     public float currentTime;
     public float maxTime;
 
-    //public Camera cam;
-    //private float playerHalfWidth; 
 
     UpdateUI uiScript;
 
@@ -48,8 +46,6 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         lifes = 3;
@@ -65,7 +61,6 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (lifes <= 0)
@@ -94,7 +89,6 @@ public class PlayerScript : MonoBehaviour
             temp.SetActive(true);
             temp.transform.position = transform.position;
             temp.transform.rotation = transform.rotation;
-            //GameObject temp = Instantiate(bullet, transform.position, transform.rotation);
             Rigidbody2D rbtemp = temp.GetComponent<Rigidbody2D>();
             rbtemp.AddForce(transform.up * 5, ForceMode2D.Impulse);
         }

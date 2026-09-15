@@ -29,22 +29,18 @@ public class GameManager : MonoBehaviour
     }
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isPlaying = true;
 
-        gameTime = 90;
-        // maxTime = 90;
+        gameTime = 300;
         UpdateGameTimeText();
 
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // while (isPlaying == true)
         if (isPlaying)
         {
             gameTime -= Time.deltaTime;
@@ -70,7 +66,12 @@ public class GameManager : MonoBehaviour
     {
         int min = (int)gameTime / 60;
         int sec = (int)gameTime % 60;
-        gameTimeText.text = min.ToString("00") + ":" + sec.ToString("00"); // + "/" + maxTime.ToString();
+        gameTimeText.text = min.ToString("00") + ":" + sec.ToString("00"); 
+    }
+
+    public float GetGameTime()
+    {
+        return gameTime;
     }
 
     public void PlayerDied()
