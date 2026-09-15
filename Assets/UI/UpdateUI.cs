@@ -8,10 +8,15 @@ public class UpdateUI : MonoBehaviour
     public TMP_Text lifesText;
     public TMP_Text highScoreText;
     public int score;
+
     public GameObject gameOverPanel;
+    public GameObject victoryPanel;
 
     [SerializeField]
     private AudioSource gameOverAudio;
+
+    [SerializeField]
+    private AudioSource victoryAudio;
 
 
     void Start()
@@ -46,11 +51,20 @@ public class UpdateUI : MonoBehaviour
 
     public void OpenGameOver()
     {
+        victoryAudio.ignoreListenerPause = true;
+        victoryAudio.Play();
+        victoryPanel.SetActive(true);
+        SaveHighScore(); 
+    }
+
+    public void OpenVictory()
+    {
         gameOverAudio.ignoreListenerPause = true;
         gameOverAudio.Play();
         gameOverPanel.SetActive(true);
-        SaveHighScore(); 
+        SaveHighScore();
     }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(1);
