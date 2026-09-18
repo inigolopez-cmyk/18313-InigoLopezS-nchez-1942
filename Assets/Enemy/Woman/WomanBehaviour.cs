@@ -100,14 +100,6 @@ public class WomanBehaviour : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    void OnBecameInvisible()
-    {
-        if (currentState == State.Charging)
-        {
-            gameObject.SetActive(false);
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Bullet")

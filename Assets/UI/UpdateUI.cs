@@ -67,6 +67,8 @@ public class UpdateUI : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
         SceneManager.LoadScene(1);
     }
 

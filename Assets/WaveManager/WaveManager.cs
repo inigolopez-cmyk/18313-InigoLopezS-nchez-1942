@@ -19,7 +19,7 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
-        float elapsed = 300 - GameManager.Instance.GetGameTime();
+        float elapsed = 120 - GameManager.Instance.GetGameTime();
 
         if (elapsed >= 5 && !wave1Done)
         {

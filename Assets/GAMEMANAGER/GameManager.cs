@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         isPlaying = true;
 
-        gameTime = 300;
+        gameTime = 120;
         UpdateGameTimeText();
 
 
