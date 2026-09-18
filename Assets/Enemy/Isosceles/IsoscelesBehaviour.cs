@@ -13,10 +13,22 @@ public class IsoscelesBehaviour : MonoBehaviour
     GameObject player;
     UpdateUI uiScript;
 
+    SpriteRenderer sr;
+
+    void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     void Start()
     {
         player = GameObject.Find("Player");
         uiScript = GameObject.Find("Canvas").GetComponent<UpdateUI>();
+    }
+
+    void OnEnable()
+    {
+        sr.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
     }
 
     void Update()

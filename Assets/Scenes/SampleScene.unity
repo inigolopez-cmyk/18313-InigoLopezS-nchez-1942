@@ -1027,7 +1027,8 @@ RectTransform:
   - {fileID: 1113549416}
   - {fileID: 997685188}
   - {fileID: 2029889921}
-  - {fileID: 1801730980}
+  - {fileID: 1359385014}
+  - {fileID: 1882498578}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2342,6 +2343,31 @@ MonoBehaviour:
       m_Action: Shoot
       m_Flags: 0
     m_Flags: 0
+  dash:
+    m_Name: Dash
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 730a6b5d-ee90-4bd6-a9d2-19842520787e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 58abb8c0-1b97-4db5-b23c-e1eda519be90
+      m_Path: <Keyboard>/leftShift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dash
+      m_Flags: 0
+    - m_Name: 
+      m_Id: ddf9bf2c-f0a0-4fcf-bfdd-763a86edb5b1
+      m_Path: <Keyboard>/shift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dash
+      m_Flags: 0
+    m_Flags: 0
   rb2D: {fileID: 805723292}
   bullet: {fileID: 4627627908547251666, guid: 12ae2a8d582183b4d8783e16b7aecbef, type: 3}
   shootAudio: {fileID: 805723293}
@@ -2349,6 +2375,9 @@ MonoBehaviour:
   currentTime: 0
   maxTime: 2
   bulletPool: []
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
 --- !u!60 &805723291
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3946,7 +3975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1359385014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3963,12 +3992,12 @@ RectTransform:
   - {fileID: 1199428432}
   - {fileID: 1685495576}
   - {fileID: 1943074040}
-  m_Father: {fileID: 1801730980}
+  m_Father: {fileID: 436890452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1079.7697}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1359385015
 MonoBehaviour:
@@ -5374,43 +5403,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 827748767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1801730979
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1801730980}
-  m_Layer: 5
-  m_Name: Panels
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1801730980
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801730979}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1359385014}
-  - {fileID: 1882498578}
-  m_Father: {fileID: 436890452}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1811777542
 GameObject:
   m_ObjectHideFlags: 0
@@ -5599,7 +5591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1882498576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5654,12 +5646,12 @@ RectTransform:
   - {fileID: 1450502480}
   - {fileID: 1045440625}
   - {fileID: 561144460}
-  m_Father: {fileID: 1801730980}
+  m_Father: {fileID: 436890452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1079.7697}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1899867780
 GameObject:

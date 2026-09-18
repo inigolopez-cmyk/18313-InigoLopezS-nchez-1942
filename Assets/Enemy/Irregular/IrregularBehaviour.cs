@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class IrregularBehaviour : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class IrregularBehaviour : MonoBehaviour
     float startX;
     float timeAlive;
 
+    SpriteShapeRenderer sr;
+
+    void Awake()
+    {
+        sr = GetComponent<SpriteShapeRenderer>();
+    }
 
     void Start()
     {
@@ -23,8 +30,10 @@ public class IrregularBehaviour : MonoBehaviour
         uiScript = GameObject.Find("Canvas").GetComponent<UpdateUI>();
     }
 
+
     void OnEnable()
     {
+        sr.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         startX = transform.position.x;
         timeAlive = 0f;
     }

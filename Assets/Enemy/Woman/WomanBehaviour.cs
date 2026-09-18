@@ -27,6 +27,13 @@ public class WomanBehaviour : MonoBehaviour
     private float dropChance = 0.1f;
     public int scoreValue = 50;
 
+    SpriteRenderer sr;
+
+    void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -35,6 +42,8 @@ public class WomanBehaviour : MonoBehaviour
 
     void OnEnable()
     {
+        sr.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+
         currentState = State.Rushing;
 
         if (Camera.main != null)
