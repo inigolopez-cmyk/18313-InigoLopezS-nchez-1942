@@ -12,7 +12,6 @@ public class IsoscelesSpawner : MonoBehaviour
 
     public float spawnMarginY = 1f;       
     public int maxEnemiesThisWave = 5;     
-    int enemiesSpawnedCount = 0;
 
     void Start()
     {
@@ -37,12 +36,6 @@ public class IsoscelesSpawner : MonoBehaviour
 
             e.SetActive(true);
             currentTime = 0;
-
-            enemiesSpawnedCount++;
-            if (enemiesSpawnedCount >= maxEnemiesThisWave)
-            {
-                enabled = false;
-            }
         }
     }
 

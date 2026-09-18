@@ -3,40 +3,56 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     public IsoscelesSpawner isoscelesSpawner;
-    public IrregularSpawner irregularSpawner; 
-    public WomanSpawner womanSpawner;    
+    public IrregularSpawner irregularSpawner;
+    public WomanSpawner womanSpawner;
 
-    bool wave1Done = false;
-    bool wave2Done = false;
-    bool wave3Done = false;
+    public float waveInterval = 10f;
+
+    float waveTimer;
+    int currentWave = 0;
+    int waveCount = 0;
+    bool allActivated = false;
 
     void Start()
     {
-        isoscelesSpawner.enabled = false;
-        irregularSpawner.enabled = false;
-        womanSpawner.enabled = false;
+        waveTimer = waveInterval;
+        ActivateSingle(0);
     }
 
     void Update()
     {
-        float elapsed = 120 - GameManager.Instance.GetGameTime();
+        if (allActivated) return;
 
-        if (elapsed >= 5 && !wave1Done)
-        {
-            isoscelesSpawner.enabled = true;
-            wave1Done = true;
-        }
+        waveTimer -= Time.deltaTime;
 
-        if (elapsed >= 20 && !wave2Done)
+        if (waveTimer <= 0)
         {
-            irregularSpawner.enabled = true;
-            wave2Done = true;
-        }
+            currentWave = (currentWave + 1) % 3;
+            waveCount++;
+            waveTimer = waveInterval;
 
-        if (elapsed >= 40 && !wave3Done)
-        {
-            womanSpawner.enabled = true;
-            wave3Done = true;
+            if (waveCount >= 3)
+            {
+                ActivateAll();
+                allActivated = true;
+                return;
+            }
+
+            ActivateSingle(currentWave);
         }
+    }
+
+    void ActivateSingle(int waveIndex)
+    {
+        isoscelesSpawner.enabled = (waveIndex == 0);
+        irregularSpawner.enabled = (waveIndex == 1);
+        womanSpawner.enabled = (waveIndex == 2);
+    }
+
+    void ActivateAll()
+    {
+        isoscelesSpawner.enabled = true;
+        irregularSpawner.enabled = true;
+        womanSpawner.enabled = true;
     }
 }

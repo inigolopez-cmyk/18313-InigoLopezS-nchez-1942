@@ -11,8 +11,6 @@ public class IrregularSpawner : MonoBehaviour
     public float maxTime;
 
     public float spawnMarginY = 1f;
-    public int maxEnemiesThisWave = 5;
-    int enemiesSpawnedCount = 0;
 
     void Start()
     {
@@ -37,12 +35,6 @@ public class IrregularSpawner : MonoBehaviour
 
             e.SetActive(true);
             currentTime = 0;
-
-            enemiesSpawnedCount++;
-            if (enemiesSpawnedCount >= maxEnemiesThisWave)
-            {
-                enabled = false;
-            }
         }
     }
 
@@ -61,4 +53,3 @@ public class IrregularSpawner : MonoBehaviour
         return newIrregular;
     }
 }
-

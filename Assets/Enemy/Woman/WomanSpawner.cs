@@ -11,8 +11,6 @@ public class WomanSpawner : MonoBehaviour
     public float maxTime;
 
     public float spawnMarginY = 1f;
-    public int maxEnemiesThisWave = 5;
-    int enemiesSpawnedCount = 0;
 
     void Start()
     {
@@ -37,27 +35,21 @@ public class WomanSpawner : MonoBehaviour
 
             e.SetActive(true);
             currentTime = 0;
-
-            enemiesSpawnedCount++;
-            if (enemiesSpawnedCount >= maxEnemiesThisWave)
-            {
-                enabled = false;
-            }
         }
+    }
 
-        GameObject GetWoman()
+    GameObject GetWoman()
+    {
+        foreach (GameObject temp in WomanList)
         {
-            foreach (GameObject temp in WomanList)
+            if (temp.activeInHierarchy == false)
             {
-                if (temp.activeInHierarchy == false)
-                {
-                    return temp;
-                }
+                return temp;
             }
-            GameObject newWoman = Instantiate(Woman, transform.position, Quaternion.identity);
-            newWoman.SetActive(false);
-            WomanList.Add(newWoman);
-            return newWoman;
         }
+        GameObject newWoman = Instantiate(Woman, transform.position, Quaternion.identity);
+        newWoman.SetActive(false);
+        WomanList.Add(newWoman);
+        return newWoman;
     }
 }
