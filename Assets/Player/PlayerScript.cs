@@ -7,7 +7,7 @@ public class PlayerScript : MonoBehaviour
 {
     public InputAction inputmovement;
     public InputAction shoot;
-    public InputAction dash; 
+    public InputAction dash;
 
     public Rigidbody2D rb2D;
     public GameObject bullet;
@@ -25,35 +25,35 @@ public class PlayerScript : MonoBehaviour
 
     public List<GameObject> bulletPool = new List<GameObject>();
 
-    public float dashSpeed = 20f;
-    public float dashDuration = 0.2f;
-    public float dashCooldown = 1f;
+    public float dashSpeed = 20f; // velocidad a la que se mueve el jugador mientras dura el dash
+    public float dashDuration = 0.2f; // cuánto dura el dash activo (en segundos)
+    public float dashCooldown = 1f; // cuánto hay que esperar después de un dash antes de poder hacer otro
 
-    bool isDashing = false;
-    bool canDash = true;
-    float dashTimer;
-    float dashCooldownTimer;
-    Vector2 dashDirection;
+    bool isDashing = false; // true mientras el jugador está en medio de un dash
+    bool canDash = true; // true cuando ya pasó el cooldown y se puede volver a dashear
+    float dashTimer; // cuenta regresiva de cuánto le falta al dash actual para terminar
+    float dashCooldownTimer; // cuenta regresiva del cooldown antes de permitir otro dash
+    Vector2 dashDirection; // dirección congelada en la que se mueve el dash
 
     private void OnEnable()
     {
         inputmovement.Enable();
         shoot.Enable();
-        dash.Enable(); 
+        dash.Enable(); // habilita el input de dash junto con los demás
     }
 
     private void OnDisable()
     {
         inputmovement.Disable();
         shoot.Disable();
-        dash.Disable(); 
+        dash.Disable(); // deshabilita el input de dash junto con los demás
     }
 
     private void FixedUpdate()
     {
         if (isDashing)
         {
-            rb2D.linearVelocity = dashDirection * dashSpeed;
+            rb2D.linearVelocity = dashDirection * dashSpeed; // ignora el input normal y fuerza la velocidad del dash
         }
         else
         {
@@ -113,33 +113,33 @@ public class PlayerScript : MonoBehaviour
         // --- Dash ---
         if (!canDash)
         {
-            dashCooldownTimer -= Time.deltaTime;
+            dashCooldownTimer -= Time.deltaTime; // va bajando el tiempo de cooldown
             if (dashCooldownTimer <= 0)
             {
-                canDash = true;
+                canDash = true; // ya se puede volver a dashear
             }
         }
 
-        if (dash.triggered && canDash && !isDashing)
+        if (dash.triggered && canDash && !isDashing) // solo si se presionó el botón, no hay cooldown, y no está dasheando ya
         {
             Vector2 moveInput = inputmovement.ReadValue<Vector2>();
-            dashDirection = moveInput.normalized;
+            dashDirection = moveInput.normalized; // dirección del dash = dirección actual de movimiento
 
-            if (dashDirection != Vector2.zero)
+            if (dashDirection != Vector2.zero) // no se permite dashear si está parado
             {
                 isDashing = true;
                 canDash = false;
-                dashTimer = dashDuration;
-                dashCooldownTimer = dashCooldown;
+                dashTimer = dashDuration; // arranca la duración del dash
+                dashCooldownTimer = dashCooldown; // arranca el cooldown al mismo tiempo
             }
         }
 
         if (isDashing)
         {
-            dashTimer -= Time.deltaTime;
+            dashTimer -= Time.deltaTime; // cuenta regresiva de lo que le falta al dash
             if (dashTimer <= 0)
             {
-                isDashing = false;
+                isDashing = false; // termina el dash, vuelve al movimiento normal
             }
         }
     }

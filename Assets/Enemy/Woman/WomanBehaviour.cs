@@ -8,7 +8,7 @@ public class WomanBehaviour : MonoBehaviour
     GameObject player;
     UpdateUI uiScript;
 
-    [SerializeField] 
+    [SerializeField]
     private AudioSource screamAudio;
 
     public float rushSpeed = 4f;
@@ -21,9 +21,10 @@ public class WomanBehaviour : MonoBehaviour
 
     public float chargeSpeed = 12f;
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject pickupPrefab;
-    [Range(0f, 1f)][SerializeField] 
+    [Range(0f, 1f)]
+    [SerializeField]
     private float dropChance = 0.1f;
     public int scoreValue = 50;
 
@@ -49,7 +50,7 @@ public class WomanBehaviour : MonoBehaviour
         if (Camera.main != null)
         {
             screenCenterWorld = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Mathf.Abs(Camera.main.transform.position.z)));
-            screenCenterWorld.z = transform.position.z;
+            screenCenterWorld.z = transform.position.z; // ajusta el Z al de la mujer para que quede en el mismo plano 2D
         }
 
         if (screamAudio != null)
@@ -76,12 +77,12 @@ public class WomanBehaviour : MonoBehaviour
 
     void DoRushing()
     {
-        transform.position = Vector3.MoveTowards(transform.position, screenCenterWorld, rushSpeed * Time.deltaTime);
-        FaceDirection(screenCenterWorld - transform.position);
+        transform.position = Vector3.MoveTowards(transform.position, screenCenterWorld, rushSpeed * Time.deltaTime); // avanza desde su posición actual hacia el centro de la pantalla, un poco en cada frame
+        FaceDirection(screenCenterWorld - transform.position); // gira el sprite para que "mire" hacia el centro mientras avanza
 
         if (Vector3.Distance(transform.position, screenCenterWorld) <= centerArrivalThreshold)
         {
-            currentState = State.Aiming;
+            currentState = State.Aiming; // ya está cerca del centro, pasa a la fase de apuntar
             aimTimer = aimDuration;
         }
     }
@@ -92,7 +93,7 @@ public class WomanBehaviour : MonoBehaviour
 
         if (aimTimer <= 0)
         {
-            chargeDirection = (player.transform.position - transform.position).normalized;
+            chargeDirection = (player.transform.position - transform.position).normalized; // congela la dirección hacia donde está el jugador justo en este instante
             FaceDirection(chargeDirection);
             currentState = State.Charging;
         }
@@ -100,7 +101,7 @@ public class WomanBehaviour : MonoBehaviour
 
     void DoCharging()
     {
-        transform.position += (Vector3)chargeDirection * chargeSpeed * Time.deltaTime;
+        transform.position += (Vector3)chargeDirection * chargeSpeed * Time.deltaTime; // avanza en línea recta cada frame en la dirección que quedó congelada en DoAiming
     }
 
     void FaceDirection(Vector3 direction)
@@ -118,7 +119,7 @@ public class WomanBehaviour : MonoBehaviour
 
             if (Random.value <= dropChance)
             {
-                Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+                Instantiate(pickupPrefab, transform.position, Quaternion.identity); 
             }
 
             gameObject.SetActive(false);
